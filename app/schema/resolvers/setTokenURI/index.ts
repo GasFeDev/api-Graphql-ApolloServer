@@ -1,0 +1,1 @@
+export { setTokenURI } from './setTokenURI';

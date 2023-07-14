@@ -1,0 +1,1 @@
+export { setContractURI } from './setContractUri';

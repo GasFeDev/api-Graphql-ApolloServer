@@ -1,0 +1,1 @@
+export { setDynamicSvg } from './setDynamicSvg'

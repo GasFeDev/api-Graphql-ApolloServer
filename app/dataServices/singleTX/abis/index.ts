@@ -1,0 +1,1 @@
+export { TEST_ABI } from "./TEST";

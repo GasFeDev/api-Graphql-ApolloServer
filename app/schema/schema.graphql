@@ -1,0 +1,316 @@
+scalar BigNumber
+scalar DateTime
+scalar Json
+scalar any
+scalar EthereumAddress
+
+#handle user commands
+type Query {
+  getAllPeople: [Person] #will return multiple Person instances
+  getPerson(id: Int): Person #has an argument of 'id' of type Integer.
+  singleTX(payload: SingleTXPayload!): TXResponse!
+}
+
+type Mutation {
+  createCollection(input: CreateCollectionPayload!): CreateTxResponse!
+  createERC20(input: addCreateErc20TxPayload!): CreateTxResponse!
+  mintNFT(input: addMintNftTxPayload!): TXResponse!
+  equipToken(input: addEquipTokenTXPayload!): TXResponse!
+  unequipToken(input: addUnequipTokenTXPayload!): TXResponse!
+  createCollectionNFT(input: addCreateCollectionNftTXPayload!): TXResponse!
+  transferERC721(input: TransferERC721Payload!): TXResponse!
+  transferNft(input: addTransferNftPayload!): TXResponse!
+  burn(input: addBurnErc20TxPayload!): TXResponse!
+  burnERC721(input: BurnERC721!): TXResponse!
+  burnNft(input: addBurnNftTxPayload!): TXResponse!
+  # New methods
+  setDynamicSvg(input: addSetDynamicSvgPayload!): TXResponse!
+  setContractURI(input: addsetContractURIPayload!): TXResponse!
+  setTrustedForwarder(input: addSetTrustedForwarderPayload!): TXResponse!
+  setApprovalForAll(input: SetApprovalForAllPayload!): TXResponse!
+  setUniqueSVG(input: addSetUniqueSVGPayload!): TXResponse!
+  setTokenURI(input: addSetTokenUriPayload!): TXResponse!
+
+  setDescription(input: GenericMethodPayload!): TXResponse!
+  setBaseUri(input: GenericMethodPayload!): TXResponse!
+  setPropertyNames(input: SetPropertyNamesPayload!): TXResponse!
+  setPropertyValue(input: SetPropertyValuePayload!): TXResponse!
+  setUnderlyingToken(input: SetUnderlyingTokenPayload!): TXResponse!
+  mint(input: addMintErc20TxPayload!): TXResponse!
+  createFunction(input: receiveTransactionTxPayload!): TXResponse!
+  transfer(input: addTransferERC20Payload!): TXResponse!
+}
+
+type Person {
+  id: ID!
+  name: String
+}
+
+type LoggerTX {
+  id: ID!
+  txHash: String!
+  txType: String!
+  timestamp: DateTime!
+  from: String!
+  to: String!
+  contractAddress: String
+  message: String
+  confirm: Int!
+}
+type Wallet {
+  address: String
+  key: String!
+}
+
+type TXResponse {
+  txStatus: Int!
+  txId: String!
+  txRawResult: Json
+  decodeData: any
+  txHash: String
+  message: String
+  errors: [String!]
+}
+
+type CreateTxResponse {
+  errors: [String]!
+  txResponse: TXResponse!
+  address: String
+  txHash: String
+  collectionOwner: String
+}
+
+#inputs
+
+input addTransferERC20Payload {
+  tokenAddress: EthereumAddress!
+  to: EthereumAddress!
+  amount: BigNumber!
+}
+
+input TransferERC721Payload {
+  to: String!
+  from: String!
+  contractAddress: String!
+  tokenId: BigNumber!
+}
+
+input addTransferNftPayload {
+  to: EthereumAddress!
+  from: EthereumAddress!
+  contractAddress: EthereumAddress!
+  tokenId: BigNumber!
+  type: NFTMintType!
+}
+
+enum NFTMintType {
+  DYNAMIC
+  BASE
+  IMMUTABLE
+}
+
+enum NFTCreateType {
+  DYNAMIC
+  BASE
+  IMMUTABLE
+}
+
+input dataNFTContract {
+  name: String!
+  symbol: String!
+  contractURI: String!
+  baseURI: String!
+  maxSupply: Int!
+  owner: String!
+  forwarder: String!
+  isImmutable: Boolean
+  isMultisign: Boolean!
+  isComposable: Boolean!
+  isEvolutionary: Boolean!
+  isDynamic: Boolean
+  isMetadataOnChain: Boolean!
+  evolutionaryProperties: [PropertyInput!]!
+}
+
+input PropertyInput {
+  name: String!
+  value: String!
+}
+
+input addMintNftTxPayload {
+  to: EthereumAddress!
+  tokenAddress: EthereumAddress!
+  _tokenURI: String
+  tokenId: BigNumber
+  type: NFTMintType!
+  _properties: [PropertyInput!]
+  numUids: Int
+}
+
+input addEquipTokenTXPayload {
+  contractAddress: EthereumAddress!
+  _tokenAddress: EthereumAddress!
+  _destinationNFT: BigNumber!
+  _tokenId: BigNumber!
+  _amount: BigNumber!
+  type: NFTMintType!
+}
+
+input addUnequipTokenTXPayload {
+  contractAddress: EthereumAddress!
+  _tokenAddress: EthereumAddress!
+  _destinationNFT: BigNumber!
+  _tokenId: BigNumber!
+  _amount: BigNumber!
+  type: NFTMintType!
+}
+
+input addMintErc20TxPayload {
+  txHash: String
+  txType: String
+  contractAddress: EthereumAddress!
+  account: EthereumAddress!
+  amount: Int!
+}
+
+input SingleTXPayload {
+  walletPrivateKey: String!
+  contractAddress: String!
+  from: String!
+  to: String!
+}
+input receiveTransactionTxPayload {
+  txReceipt: String!
+  nftType: String!
+  functionName: String!
+  functionParams: String!
+  from: String!
+  to: String!
+  txid: String!
+}
+
+input CreateCollectionPayload {
+  collectionOwner: EthereumAddress!
+  contractUri: String!
+  baseUri: String!
+  isOnChainMD: Boolean!
+  name: String!
+  symbol: String!
+  maxSupply: BigNumber!
+  ntfType: Int!
+}
+
+input addCreateErc20TxPayload {
+  id: ID
+  txHash: String
+  txType: String
+  message: String
+  confirm: Int
+  factoryAddress: EthereumAddress
+  name_: String!
+  symbol_: String!
+  decimals_: BigNumber!
+  maxSupply_: Int!
+  owner_: EthereumAddress!
+}
+
+input addCreateCollectionNftTXPayload {
+  contractAddress: String!
+  data: dataNFTContract!
+  _dynamicSVG: String
+  _nftType: NFTCreateType!
+  numUids: Int
+}
+
+input ChangeMetadataPayload {
+  sponsor: String!
+  executor: String!
+  properties: Json
+}
+
+input GenericMethodPayload {
+  stringArgument: String!
+  contractAddress: String!
+}
+
+input addSetTrustedForwarderPayload {
+  _forwarder: String!
+  contractAddress: EthereumAddress!
+}
+
+input addSetDynamicSvgPayload {
+  _newSvg: String!
+  contractAddress: EthereumAddress!
+}
+
+input addsetContractURIPayload {
+  _uri: String!
+  contractAddress: EthereumAddress!
+}
+
+input SetApprovalForAllPayload {
+  operator: String!
+  approved: Boolean!
+  contractAddress: String!
+}
+
+input addSetUniqueSVGPayload {
+  tokenId: Int!
+  _uniqueSVG: String!
+  contractAddress: EthereumAddress!
+}
+
+input SetPropertyNamesPayload {
+  contractAddress: String!
+  count: Int!
+  names: [String]!
+}
+
+input SetPropertyValuePayload {
+  tokenId: Int!
+  values: [String]!
+  contractAddress: String!
+}
+
+input SetUnderlyingTokenPayload {
+  underlyingToken: String!
+  isERC20: Boolean!
+  contractAddress: String!
+}
+
+input addSetTokenUriPayload {
+  _tokenId: Int!
+  _tokenURI: String!
+  _tokenOwnerSign: Int!
+  contractAddress: EthereumAddress!
+}
+
+input BurnERC20 {
+  contractAddress: EthereumAddress!
+  amount: Int!
+}
+
+input BurnERC721 {
+  contractAddress: String!
+  tokenId: BigNumber!
+}
+
+input addBurnNftTxPayload {
+  contractAddress: EthereumAddress!
+  tokenId: BigNumber!
+  type: NFTMintType!
+}
+
+input addBurnErc20TxPayload {
+  contractAddress: EthereumAddress!
+  amount: Int!
+}
+
+input SetNFTContractUriPayload {
+  collection: String!
+  to: String!
+}
+
+input TransferOwnershipPayload {
+  newOwner: String!
+}

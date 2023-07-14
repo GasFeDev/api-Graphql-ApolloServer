@@ -1,0 +1,1 @@
+export { setPropertyNames } from './setPropertyNames';

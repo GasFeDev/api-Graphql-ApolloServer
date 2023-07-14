@@ -1,0 +1,97 @@
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+*.swp
+
+pids
+logs
+results
+tmp
+
+# Build
+public/css/main.css
+
+# Coverage reports
+coverage
+
+# API keys and secrets
+#.env
+
+# Dependency directory
+node_modules
+bower_components
+
+# Editors
+.idea
+*.iml
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Ignore built ts files
+dist/**/*
+
+# ingore ts build info
+
+.tsconfig.tsbuildinfo
+tsconfig.tsbuildinfo.json
+
+# ignore yarn.lock
+yarn.lock
+
+coverage
+coverage.json
+typechain
+
+#Hardhat files
+cache
+artifacts
+
+# Auto generated graphql type files
+**/generated.*
+generated/
+
+./auth
+/auth
+
+.terraform
+.terraform.*
+*.tfstate*
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+terraform.tfstate.*
+
+# Crash log files
+crash.log
+crash.*.log
+
+# Ignore CLI configuration files
+.terraformrc
+terraform.rc
+
+#ignore keys
+
+.ssh
+
+*.key
+*.cert
+*.crt
+*.pem
+
+cert
+cert/**
+
+localhost.decrypted.key
+localhost.crt
+
+private.key
+certificate.crt

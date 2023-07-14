@@ -1,0 +1,1 @@
+export { mintNFT } from "./mintNFT";

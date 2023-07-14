@@ -1,0 +1,1 @@
+export { burnNft } from "./burnNFT";

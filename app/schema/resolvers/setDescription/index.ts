@@ -1,0 +1,1 @@
+export { setDescription } from './setDescription'

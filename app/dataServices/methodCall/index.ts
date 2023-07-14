@@ -1,0 +1,6 @@
+export { setDynamicSvgCall } from './setDynamicSvg'
+export { setUniqueSvgCall } from './setUniqueSvg'
+export { setTokenURICall } from './setTokenURI'
+export { setContractURICall } from './setContractURI'
+export { setTrustedForwarderCall } from './setTrustedForwarder'
+export { methodCall } from './methodCall'

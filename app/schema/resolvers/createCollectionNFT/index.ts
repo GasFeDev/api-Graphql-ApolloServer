@@ -1,0 +1,1 @@
+export { createCollectionNFT } from "./createCollectionNFT";

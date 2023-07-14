@@ -1,0 +1,111 @@
+{
+	"info": {
+		"_postman_id": "46786474-0859-4d08-a153-1fe23aa7fa93",
+		"name": "Dgraph",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getLoggerTX",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query MyQuery {\n  queryloggerTX(order: {desc: timestamp}) {\n    contractAddress\n    from\n    confirm\n    id\n    message\n    timestamp\n    to\n    txHash\n    txType\n  }\n}\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "https://blue-surf-660051.us-east-1.aws.cloud.dgraph.io/graphql",
+					"protocol": "https",
+					"host": [
+						"blue-surf-660051",
+						"us-east-1",
+						"aws",
+						"cloud",
+						"dgraph",
+						"io"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addTxLogger",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation addLoggerTX {\n    addloggerTX(\n        input: {\n            txHash: \"TX_ZERO\", \n            txType: \"CREATE_COLLECTION\", \n            timestamp: \"2022-11-15\", from: \"9df\", \n            to: \"8df\",\n            contractAddress: \"0fdx\", \n            message: \"new Test\",\n            confirm: 0\n        }) {\n      loggerTX {\n        id\n        txType\n        txHash\n        from\n        to\n        contractAddress\n        timestamp\n        confirm\n        message\n      }\n    }\n  }\n  ",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "https://blue-surf-660051.us-east-1.aws.cloud.dgraph.io/graphql",
+					"protocol": "https",
+					"host": [
+						"blue-surf-660051",
+						"us-east-1",
+						"aws",
+						"cloud",
+						"dgraph",
+						"io"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateTXLogger",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation updateloggerTX {\n    updateloggerTX(\n        input: {\n            filter:{id:\"0xfffd8d6aba8be155\"},\n            set: {\n            txHash: \"0x80119f848540c09f7700a9d021562384909bc2164d3082292d803aef785d4395\", \n            message: \"Blocked included, transactions proceced\",\n            confirm: 1\n        }}) {\n      loggerTX {\n        id\n        txType\n        txHash\n        from\n        to\n        contractAddress\n        timestamp\n        confirm\n        message\n      }\n    }\n  }\n  ",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "https://blue-surf-660051.us-east-1.aws.cloud.dgraph.io/graphql",
+					"protocol": "https",
+					"host": [
+						"blue-surf-660051",
+						"us-east-1",
+						"aws",
+						"cloud",
+						"dgraph",
+						"io"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

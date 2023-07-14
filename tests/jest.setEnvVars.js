@@ -1,0 +1,19 @@
+process.env.APP_PORT = 4000;
+process.env.DGRAPH_KEY = "key";
+process.env.DGRAPH_ENDPOINT = "https://google.com";
+process.env.PRIVATE_KEY_EXECUTOR = "PRIVATE_KEY_EXECUTOR";
+process.env.PRIVATE_KEY_SPONSOR = "PRIVATE_KEY_SPONSOR";
+process.env.GSN_RELAY_SIGNING_KEY = "GSN_RELAY_SIGNING_KEY";
+process.env.ETHEREUM_RPC_URL = "https://google.com";
+process.env.GSN_ENDPOINT = "https://google.com";
+process.env.INFURA_API_KEY = "INFURA_API_KEY";
+process.env.GSN_SECRET = "GSN_SECRET";
+process.env.RECIPIENT = "RECIPIENT";
+process.env.TOKEN_ADDRESS = "TOKEN_ADDRESS";
+process.env.WALLET_PRIVATE_KEY = "WALLET_PRIVATE_KEY";
+process.env.SENTRY_DSN =
+  "https://93166e712c824bb895455fff5a792e48@o4504119659069440.ingest.sentry.io/4504119661494272";
+process.env.PRIVATE_KEY_CONTRACTS_SPONSOR = "PRIVATE_KEY_CONTRACTS_SPONSOR";
+process.env.PRIVATE_KEY_CONTRACTS_EXECUTOR = "PRIVATE_KEY_CONTRACTS_EXECUTOR";
+process.env.FACTORY_ADDRESS = "FACTORY_ADDRESS";
+process.env.FACTORY_KEY = "FACTORY_KEY";
