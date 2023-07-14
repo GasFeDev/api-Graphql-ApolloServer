@@ -1,4 +1,4 @@
-# DEGA API
+# GASFEDEV API
 
 ## Commands
 
